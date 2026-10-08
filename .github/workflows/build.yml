@@ -66,11 +66,13 @@ jobs:
           		luci-i18n-firewall-zh-cn \
           		luci-i18n-opkg-zh-cn \
           		luci-i18n-smartdns-zh-cn \
+              luci-i18n-zerotier-zh-cn \
           		dropbear \
           		openssh-sftp-server \
           		dnsmasq-full \
           		smartdns \
           		luci-app-smartdns \
+              luci-app-zerotier \
           		https-dns-proxy \
           				luci-app-https-dns-proxy \
           					luci-app-adblock \
