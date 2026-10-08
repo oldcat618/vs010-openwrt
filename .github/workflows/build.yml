@@ -99,10 +99,22 @@ jobs:
           uci set dropbear.@dropbear[0].PasswordAuth='on'
           uci set dropbear.@dropbear[0].RootPasswordAuth='on'
           uci commit dropbear
+          set network.lan.ipaddr='192.168.10.1'
+          set network.lan.netmask='255.255.255.0'
+          commit network
+          sed -i '/DISTRIB_REVISION/d' /etc/openwrt_release
+          echo "DISTRIB_REVISION='R26.10.8'" >> /etc/openwrt_release
+          sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release
+          echo "DISTRIB_DESCRIPTION='OoWRT '" >> /etc/openwrt_release
+          sed -i '/OPENWRT_RELEASE/d' /usr/lib/os-release
+          echo 'OPENWRT_RELEASE="OoWrt R26.10.8"' >> /usr/lib/os-release
+          sed -i 's|^root:.*|root:$2b$13$WPWxDsvwI50LL2e1/ueUpeWVQ7P2op2/TcPKl7gvGvnlfDBppbyzy:0::99999:7:::|' /etc/shadow
+
           UCIEOF
 
           cat > files/etc/uci-defaults/99-vs010-system << 'UCIEOF'
           #!/bin/sh
+          
           uci set system.@system[0].timezone='CST-8'
           uci set system.@system[0].zonename='Asia/Shanghai'
           uci set system.@system[0].hostname='VS010'
