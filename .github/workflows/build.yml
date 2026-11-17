@@ -43,53 +43,7 @@ jobs:
 
       - name: Apply VS010 patches
         run: |
-          cp ipq5018-vs010.dts openwrt/target/linux/qualcommax/dts/
           cd openwrt
-          cat >> target/linux/qualcommax/image/ipq50xx.mk << 'MKEOF'
-
-          define Device/unicom_vs010
-          	$(call Device/FitImageLzma)
-          	$(call Device/UbiFit)
-          	DEVICE_VENDOR := Unicom
-          	DEVICE_MODEL := VS010
-          	DEVICE_DTS_CONFIG := config@mp02.1
-          	SOC := ipq5018
-          	BLOCKSIZE := 128k
-          	PAGESIZE := 2048
-          	IMAGE_SIZE := 59392k
-          	NAND_SIZE := 128m
-          	IMAGES += factory.img
-          	IMAGE/factory.img := append-ubi | qsdk-ipq-factory-nand
-          	DEVICE_PACKAGES := ath11k-firmware-ipq5018-qcn6122 \
-          		luci \
-          		luci-i18n-base-zh-cn \
-          		luci-i18n-firewall-zh-cn \
-          		luci-i18n-opkg-zh-cn \
-          		luci-i18n-smartdns-zh-cn \
-              luci-i18n-zerotier-zh-cn \
-          		dropbear \
-          		openssh-sftp-server \
-          		dnsmasq-full \
-          		smartdns \
-          		luci-app-smartdns \
-              luci-app-zerotier \
-          		https-dns-proxy \
-          				luci-app-https-dns-proxy \
-          					luci-app-adblock \
-          					luci-app-sqm \
-          					adblock \
-          					sqm-scripts \
-          					wireguard-tools \
-          		luci-proto-wireguard \
-          		kmod-wireguard \
-          		curl \
-          		wget-ssl \
-          		iperf3 \
-          		htop \
-          		nano
-          endef
-          TARGET_DEVICES += unicom_vs010
-          MKEOF
 
           # ── uci-defaults: 首次启动配置 ──
           mkdir -p files/etc/uci-defaults
