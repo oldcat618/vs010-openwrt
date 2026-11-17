@@ -24,7 +24,7 @@ jobs:
 
       - name: Clone OpenWrt
         run: |
-          git clone --depth=1 --single-branch https://github.com/mcliujii/immortalwrt-VS010.git
+          git clone --depth=1 --single-branch https://github.com/mcliujii/immortalwrt-VS010.git openwrt
         timeout-minutes: 10
 
       - name: Update feeds
